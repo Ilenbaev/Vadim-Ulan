@@ -166,19 +166,6 @@ export default function PrimarySearchAppBar() {
       </MenuItem>
 
       <MenuItem>
-        <NavLink to="/publish" style={{ textDecoration: "none" }}>
-          <IconButton
-            style={{ color: "black" }}
-            size="large"
-            aria-label="show 4 new mails"
-          >
-            <ImportContactsIcon />
-          </IconButton>
-          <span style={{ color: "black" }}>Издательство</span>
-        </NavLink>
-      </MenuItem>
-
-      <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
             <MailIcon />
@@ -225,7 +212,15 @@ export default function PrimarySearchAppBar() {
   );
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box
+      sx={{
+        position: "sticky",
+        top: 0,
+        right: 0,
+        left: 0,
+        zIndex: 3,
+      }}
+    >
       <AppBar position="static">
         <Toolbar
           style={{
@@ -306,18 +301,6 @@ export default function PrimarySearchAppBar() {
               О нас
             </Button>
 
-            <Button
-              sx={{
-                mx: 1,
-                color: "white",
-                display: "block",
-                fontSize: "16px",
-              }}
-              component={NavLink}
-              to="/publish"
-            >
-              Издательство
-            </Button>
             <Search>
               <SearchIconWrapper>
                 <SearchIcon />
