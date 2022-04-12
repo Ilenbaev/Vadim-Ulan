@@ -1,0 +1,6 @@
+@media screen and (max-width: 768px) {
+  .cartBox {
+    flex-direction: column;
+    text-align: center;
+  }
+}

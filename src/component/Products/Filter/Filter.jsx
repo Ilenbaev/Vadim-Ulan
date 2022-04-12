@@ -29,8 +29,17 @@ const Filter = ({
 
   return (
     <div style={{ textAlign: "center" }}>
-      <Button onClick={changeDisp}>
-        <h3>Filter</h3>
+      <Button
+        sx={{
+          p: 1,
+          m: 1,
+          fontSize: "1rem",
+          fontWeight: "900",
+          color: "#991199",
+        }}
+        onClick={changeDisp}
+      >
+        <h3>Сортировка</h3>
       </Button>
       <br />
       <div

@@ -44,7 +44,11 @@ export default function Delivery() {
   };
 
   return (
-    <Container maxWidth="lg" style={{ textAlign: "center" }}>
+    <Container
+      sx={{ flexGrow: 1 }}
+      maxWidth="lg"
+      style={{ textAlign: "center" }}
+    >
       {forEditVal ? (
         <>
           <Container
@@ -147,12 +151,15 @@ export default function Delivery() {
           </Container>
 
           <Button
-            variant="outlined"
             onClick={handleClickOpen}
-            style={{
-              width: "280px",
-              color: "black",
-              margin: "10px 0",
+            variant="contained"
+            color="error"
+            style={{ marginTop: 30 }}
+            sx={{
+              p: 1,
+              marginBottom: 4,
+              fontSize: "1.5rem",
+              fontWeight: "900",
             }}
           >
             Оформить доставку
