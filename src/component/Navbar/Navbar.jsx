@@ -1,16 +1,12 @@
 import * as React from "react";
-import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
 import Badge from "@mui/material/Badge";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
@@ -18,54 +14,29 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import logo from "./img/raritet.png";
 import HomeIcon from "@mui/icons-material/Home";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import InfoIcon from "@mui/icons-material/Info";
-import ImportContactsIcon from "@mui/icons-material/ImportContacts";
 import { Button } from "@mui/material";
 import { NavLink, Link } from "react-router-dom";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
+import SettingsIcon from "@mui/icons-material/Settings";
+import "./Navbar.css";
+import LiveSearch from "../LiveSearch/LiveSearch";
+import { useCart } from "../../contexts/CartContextProvider";
+import { useAuth } from "../../contexts/AuthContextProvider";
+import FaceIcon from "@mui/icons-material/Face";
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3),
-    width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-}));
-
-export default function PrimarySearchAppBar() {
+export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+
+  const { currentUser, logOutUser } = useAuth();
+
+  const { getCartLength, cartLength } = useCart();
+
+  React.useEffect(() => {
+    getCartLength();
+  }, []);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -104,8 +75,41 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {currentUser?.isLogged && (
+        <MenuItem onClick={handleMenuClose}>{currentUser?.user}</MenuItem>
+      )}
+      {currentUser?.isLogged && (
+        <MenuItem
+          onClick={() => {
+            handleMenuClose();
+            logOutUser();
+          }}
+        >
+          Выйти
+        </MenuItem>
+      )}
+      {!currentUser?.isLogged && (
+        <MenuItem onClick={handleMenuClose}>
+          <NavLink
+            className="mobile-link"
+            to="/register"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            Регистрация
+          </NavLink>
+        </MenuItem>
+      )}
+      {!currentUser?.isLogged && (
+        <MenuItem onClick={handleMenuClose}>
+          <NavLink
+            className="mobile-link"
+            to="/login"
+            style={{ textDecoration: "none", color: "black" }}
+          >
+            Войти
+          </NavLink>
+        </MenuItem>
+      )}
     </Menu>
   );
 
@@ -148,7 +152,20 @@ export default function PrimarySearchAppBar() {
           >
             <LocationOnIcon />
           </IconButton>
-          <span style={{ color: "black" }}>Наши магазины</span>
+          <span style={{ color: "black" }}>Mагазины</span>
+        </NavLink>
+      </MenuItem>
+
+      <MenuItem>
+        <NavLink to="/book" style={{ textDecoration: "none" }}>
+          <IconButton
+            style={{ color: "black" }}
+            size="large"
+            aria-label="show 4 new mails"
+          >
+            <MenuBookIcon />
+          </IconButton>
+          <span style={{ color: "black" }}>Книги</span>
         </NavLink>
       </MenuItem>
 
@@ -165,49 +182,37 @@ export default function PrimarySearchAppBar() {
         </NavLink>
       </MenuItem>
 
-      <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
-      </MenuItem>
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
-      </MenuItem>
+      {currentUser?.isAdmin && (
+        <MenuItem>
+          <NavLink to="/admin" style={{ textDecoration: "none" }}>
+            <IconButton
+              style={{ color: "black" }}
+              size="large"
+              aria-label="show 4 new mails"
+            >
+              <SettingsIcon />
+            </IconButton>
+            <span style={{ color: "black" }}>Admin</span>
+          </NavLink>
+        </MenuItem>
+      )}
+
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
           size="large"
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
+          sx={{
+            color: currentUser?.isLogged ? "green" : "black",
+          }}
         >
-          <AccountCircle />
+          {currentUser?.isLogged ? <FaceIcon /> : <AccountCircle />}
         </IconButton>
-        <p>Profile</p>
+        <p>{currentUser.user}</p>
       </MenuItem>
-
-      <Search>
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-        <StyledInputBase
-          placeholder="Search…"
-          inputProps={{ "aria-label": "search" }}
-          style={{ border: "1px solid black", borderRadius: "5px" }}
-        />
-      </Search>
+      <hr />
+      <LiveSearch />
     </Menu>
   );
 
@@ -227,14 +232,16 @@ export default function PrimarySearchAppBar() {
             backgroundColor: "#303030",
           }}
         >
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { sm: "block" } }}
-          >
-            <img src={logo} width="200px" alt="" />
-          </Typography>
+          <NavLink to="/">
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ display: { sm: "block" } }}
+            >
+              <img src={logo} width="200px" alt="" />
+            </Typography>
+          </NavLink>
 
           <Box sx={{ flexGrow: 1 }} />
           <Box
@@ -245,25 +252,6 @@ export default function PrimarySearchAppBar() {
               },
             }}
           >
-            {/* <IconButton
-              size="large"
-              aria-label="show 4 new mails"
-              color="inherit"
-            >
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton> */}
-
             <Button
               sx={{
                 mx: 1,
@@ -286,8 +274,22 @@ export default function PrimarySearchAppBar() {
               component={NavLink}
               to="/adress"
             >
-              Наши магазины
+              Mагазины
             </Button>
+
+            <Button
+              sx={{
+                mx: 1,
+                color: "white",
+                display: "block",
+                fontSize: "16px",
+              }}
+              component={NavLink}
+              to="/book"
+            >
+              Книги
+            </Button>
+
             <Button
               sx={{
                 mx: 1,
@@ -301,16 +303,39 @@ export default function PrimarySearchAppBar() {
               О нас
             </Button>
 
-            <Search>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
-                style={{ maxWidth: "150px" }}
-              />
-            </Search>
+            {currentUser?.isAdmin && (
+              <Button
+                sx={{
+                  mx: 1,
+                  color: "white",
+                  display: "block",
+                  fontSize: "16px",
+                }}
+                component={NavLink}
+                to="/admin"
+              >
+                Admin
+              </Button>
+            )}
+
+            <LiveSearch />
+
+            {currentUser?.user && (
+              <Link to="/cart" style={{ color: "white" }}>
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <Badge badgeContent={+cartLength} color="error">
+                    <ShoppingBasketIcon />
+                  </Badge>
+                </IconButton>
+              </Link>
+            )}
+
             <IconButton
               size="small"
               edge="end"
