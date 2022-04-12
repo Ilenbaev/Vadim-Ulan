@@ -172,37 +172,17 @@ export default function Delivery() {
                 <TextField
                   sx={{ m: 1 }}
                   id="outlined-basic"
-                  label="Имя"
                   variant="outlined"
+                  label="Название книги"
+                  value={forEditVal.title}
                 />
                 <TextField
                   sx={{ m: 1 }}
                   id="outlined-basic"
-                  label="Фамилия"
+                  label="Цена"
+                  value={forEditVal.price}
                   variant="outlined"
                 />
-                <TextField
-                  sx={{ m: 1 }}
-                  id="outlined-basic"
-                  label="Адрес"
-                  variant="outlined"
-                />
-                <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
-                    Способ оплаты
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    name="type"
-                    label="Жанр"
-                    sx={{ m: 1 }}
-                  >
-                    <MenuItem value={"dollar"}>$</MenuItem>
-                    <MenuItem value={"som"}>сом</MenuItem>
-                    <MenuItem value={"rubl"}>рубль</MenuItem>
-                  </Select>
-                </FormControl>
               </div>
               <div>
                 <TextField
