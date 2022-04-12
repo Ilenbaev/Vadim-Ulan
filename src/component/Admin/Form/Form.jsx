@@ -21,7 +21,6 @@ const Form = ({ saveValues, compForEdit, forEditVal, getOneProduct }) => {
   const [inpValues, setInpValues] = useState(initValues);
   const { id } = useParams();
 
-  //todo ===> EDIT
   useEffect(() => {
     if (compForEdit) {
       getOneProduct(id);
@@ -34,8 +33,6 @@ const Form = ({ saveValues, compForEdit, forEditVal, getOneProduct }) => {
     }
   }, [forEditVal]);
 
-  //todo ===> END OF EDIT
-
   const handleChange = (e) => {
     let obj = {
       ...inpValues,
@@ -43,6 +40,7 @@ const Form = ({ saveValues, compForEdit, forEditVal, getOneProduct }) => {
     };
     setInpValues(obj);
   };
+  console.log(inpValues);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
