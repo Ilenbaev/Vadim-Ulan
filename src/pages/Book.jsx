@@ -5,7 +5,7 @@ import "./Book.css";
 
 const Products = () => {
   return (
-    <Container maxWidth="lg">
+    <Container sx={{ flexGrow: 1 }} maxWidth="lg">
       <div className="book">
         <h1>Издательство "РАРИТЕТ"</h1>
       </div>

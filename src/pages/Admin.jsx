@@ -8,14 +8,12 @@ const Admin = () => {
   const { currentUser } = useAuth();
 
   return (
-    <div>
-      <Container maxWidth="lg">
-        <div className="admin">
-          <h1>Добро пожаловать {currentUser.user}</h1>
-        </div>
-        <Outlet />
-      </Container>
-    </div>
+    <Container sx={{ flexGrow: 1 }} maxWidth="lg">
+      <div className="admin">
+        <h1>Добро пожаловать {currentUser.user}</h1>
+      </div>
+      <Outlet />
+    </Container>
   );
 };
 

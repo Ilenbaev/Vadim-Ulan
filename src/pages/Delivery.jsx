@@ -85,7 +85,11 @@ export default function Delivery() {
   };
 
   return (
-    <Container maxWidth="lg" style={{ textAlign: "center" }}>
+    <Container
+      sx={{ flexGrow: 1 }}
+      maxWidth="lg"
+      style={{ textAlign: "center" }}
+    >
       {forEditVal ? (
         <>
           <Container
@@ -186,29 +190,38 @@ export default function Delivery() {
               </CardContent>
             </Card>
           </Container>
+          <Box style={{ display: "flex", justifyContent: "space-around" }}>
+            <Button
+              component={Link}
+              to="/book"
+              variant="contained"
+              color="success"
+              style={{ marginTop: 30 }}
+              sx={{
+                p: 2,
+                marginBottom: 4,
+                fontSize: "1.5rem",
+                fontWeight: "900",
+              }}
+            >
+              Вернуться к выбору книг
+            </Button>
 
-          <Button
-            component={Link}
-            to="/book"
-            variant="outlined"
-            color="inherit"
-            sx={{ mx: 3 }}
-          >
-            Вернуться к выбору книг
-          </Button>
-
-          <Button
-            variant="outlined"
-            onClick={handleClickOpen}
-            color="inherit"
-            style={{
-              width: "280px",
-
-              margin: "10px 0",
-            }}
-          >
-            Оформить доставку
-          </Button>
+            <Button
+              onClick={handleClickOpen}
+              variant="contained"
+              color="error"
+              style={{ marginTop: 30 }}
+              sx={{
+                p: 2,
+                marginBottom: 4,
+                fontSize: "1.5rem",
+                fontWeight: "900",
+              }}
+            >
+              Оформить доставку
+            </Button>
+          </Box>
 
           <Dialog
             fullScreen={fullScreen}

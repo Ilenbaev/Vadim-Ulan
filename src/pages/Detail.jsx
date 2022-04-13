@@ -19,7 +19,11 @@ const Detail = () => {
   return (
     <>
       {forEditVal ? (
-        <Container maxWidth="lg" style={{ margin: " 30px auto" }}>
+        <Container
+          sx={{ flexGrow: 1 }}
+          maxWidth="lg"
+          style={{ margin: " 30px auto" }}
+        >
           <Card
             sx={{
               maxWidth: 1200,
@@ -77,16 +81,30 @@ const Detail = () => {
             <Button
               component={Link}
               to="/book"
-              variant="outlined"
-              style={{ margin: "10px", color: "black" }}
+              variant="contained"
+              color="success"
+              style={{ marginTop: 30 }}
+              sx={{
+                p: 2,
+                marginBottom: 4,
+                fontSize: "1.5rem",
+                fontWeight: "900",
+              }}
             >
               Вернуться к выбору книг
             </Button>
             <Button
-              variant="outlined"
-              style={{ margin: "10px", color: "black" }}
+              variant="contained"
+              color="error"
+              style={{ marginTop: 30 }}
+              sx={{
+                p: 1,
+                marginBottom: 4,
+                fontSize: "1.5rem",
+                fontWeight: "900",
+              }}
             >
-              Купить
+              Купить эту книгу
             </Button>
           </div>
         </Container>
