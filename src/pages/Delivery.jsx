@@ -85,16 +85,24 @@ export default function Delivery() {
   };
 
   return (
-    <Container maxWidth="lg" style={{ textAlign: "center" }}>
+    <Container
+      sx={{ flexGrow: 1 }}
+      maxWidth="lg"
+      style={{ textAlign: "center" }}
+    >
       {forEditVal ? (
         <>
-          <Container
-            sx={{ display: { lg: "flex", md: "flex" }, margin: "30px 0" }}
+          <Box
+            className="delBox"
+            style={{
+              display: "flex",
+              justifyContent: "spaceBetween",
+            }}
           >
             <Card
               sx={{
-                maxWidth: 250,
-                m: 2,
+                width: 260,
+                m: 1,
                 border: "1px solid black",
               }}
             >
@@ -117,8 +125,8 @@ export default function Delivery() {
 
             <Card
               sx={{
-                maxWidth: 250,
-                m: 2,
+                width: 260,
+                m: 1,
                 border: "1px solid black",
               }}
             >
@@ -141,8 +149,8 @@ export default function Delivery() {
 
             <Card
               sx={{
-                maxWidth: 250,
-                m: 2,
+                width: 260,
+                m: 1,
                 border: "1px solid black",
               }}
             >
@@ -165,8 +173,8 @@ export default function Delivery() {
 
             <Card
               sx={{
-                maxWidth: 250,
-                m: 2,
+                width: 260,
+                m: 1,
                 border: "1px solid black",
               }}
             >
@@ -185,30 +193,50 @@ export default function Delivery() {
                 </Typography>
               </CardContent>
             </Card>
-          </Container>
-
-          <Button
-            component={Link}
-            to="/book"
-            variant="outlined"
-            color="inherit"
-            sx={{ mx: 3 }}
+          </Box>
+          <Box
+            style={{ display: "flex", justifyContent: "space-around" }}
+            className="delCard"
           >
-            Вернуться к выбору книг
-          </Button>
+            <Button
+              component={Link}
+              to="/book"
+              variant="contained"
+              color="success"
+              style={{
+                marginTop: 20,
+                p: 1,
+                marginBottom: "30px",
+                fontSize: "1.5rem",
+                fontWeight: "900",
+              }}
+              className="delBtn"
+            >
+              Вернуться к выбору книг
+            </Button>
 
-          <Button
-            variant="outlined"
-            onClick={handleClickOpen}
-            color="inherit"
-            style={{
-              width: "280px",
-
-              margin: "10px 0",
-            }}
-          >
-            Оформить доставку
-          </Button>
+            <Button
+              onClick={handleClickOpen}
+              variant="contained"
+              color="error"
+              style={{
+                marginTop: 20,
+                p: 1,
+                marginBottom: "30px",
+                fontSize: "1.5rem",
+                fontWeight: "900",
+              }}
+              className="delBtn"
+              // style={{
+              //   p: 1,
+              //   marginBottom: 1,
+              //   fontSize: "1.5rem",
+              //   fontWeight: "900",
+              // }}
+            >
+              Оформить доставку
+            </Button>
+          </Box>
 
           <Dialog
             fullScreen={fullScreen}

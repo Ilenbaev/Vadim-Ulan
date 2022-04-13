@@ -1,3 +1,23 @@
 .modal {
   background: url(../component/Navbar/img/fone1.jpg);
 }
+
+@media screen and (max-width: 768px) {
+  .delBox {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+@media all and (max-width: 769px) {
+  .delCard {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+@media all and (max-width: 425px) {
+  .delBtn {
+    font-size: 0.5rem;
+    font-weight: 400;
+  }
+}

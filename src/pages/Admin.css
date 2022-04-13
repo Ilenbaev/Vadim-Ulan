@@ -1,6 +1,7 @@
 .admin {
-  background: url(../component/Navbar/img/fon7.jpg) center grey;
-  height: 200px;
+  background: url(./images/admin_font.jpeg) no-repeat;
+  background-size: 100%;
+  height: 180px;
 
   position: absolute;
   top: 0;

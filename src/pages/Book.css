@@ -1,7 +1,6 @@
 .book {
   background: url(../component/Navbar/img/fonBook.png) center grey;
-  height: 200px;
-  /* width: 100vw; */
+  height: 180px;
   position: absolute;
   top: 0;
   right: 0;

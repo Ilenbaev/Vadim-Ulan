@@ -11,7 +11,8 @@ import { Link } from "react-router-dom";
 import { useCart } from "../../../contexts/CartContextProvider";
 import { useAuth } from "../../../contexts/AuthContextProvider";
 import { notify } from "../../Toastify/Toastify";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import Delivery from "../../../pages/Delivery";
+import { Box } from "@mui/system";
 
 export default function OneProduct({ item }) {
   const { addDelToCart, isProdInCart } = useCart();
@@ -21,7 +22,7 @@ export default function OneProduct({ item }) {
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card
-        sx={{ maxWidth: 300, textAlign: "center", border: "2px solid grey" }}
+        sx={{ maxWidth: 400, textAlign: "center", border: "2px solid white" }}
       >
         <CardMedia
           component="img"
@@ -33,60 +34,59 @@ export default function OneProduct({ item }) {
           <Typography gutterBottom variant="h5" component="div">
             {item.title}
           </Typography>
-          <Typography variant="h6" color="green">
+          <Typography variant="h6" color="#991199">
             ${item.price}
           </Typography>
           <Typography variant="body2">{item.author}</Typography>
           <Typography variant="body1">Жанр: {item.type}</Typography>
         </CardContent>
 
-        <CardActions>
-          {currentUser.user === null ? (
-            <IconButton
-              title="Добавить в корзину"
-              color="inherit"
-              onClick={() => {
-                notify("error", "Пожалуйста зарегистрируйтесь");
-              }}
+        <CardActions style={{ display: "flex", flexDirection: "column" }}>
+          <Box>
+            {currentUser.user === null ? (
+              <IconButton
+                title="Добавить в корзину"
+                color="inherit"
+                onClick={() => {
+                  notify("error", "Пожалуйста зарегистрируйтесь");
+                }}
+              >
+                <ShoppingCartIcon />
+              </IconButton>
+            ) : (
+              <IconButton
+                title="Добавить в корзину"
+                color={inCart ? "secondary" : "inherit"}
+                onClick={() => {
+                  addDelToCart(item);
+                  setInCart(isProdInCart(item.id));
+                }}
+              >
+                <ShoppingCartIcon />
+              </IconButton>
+            )}
+            <Button
+              variant="outlined"
+              component={Link}
+              to={`detail/${item.id}`}
+              size="small"
+              style={{ color: "black" }}
             >
-              <ShoppingCartIcon />
-            </IconButton>
-          ) : (
-            <IconButton
-              title="Добавить в корзину"
-              color={inCart ? "secondary" : "inherit"}
-              onClick={() => {
-                addDelToCart(item);
-                setInCart(isProdInCart(item.id));
-              }}
+              Узнать больше..
+            </Button>
+          </Box>
+          <Box>
+            <Button
+              variant="outlined"
+              component={Link}
+              to={`delivery/${item.id}`}
+              size="small"
+              style={{ color: "black" }}
             >
-              <ShoppingCartIcon />
-            </IconButton>
-          )}
-
-          <Button
-            variant="outlined"
-            component={Link}
-            to={`detail/${item.id}`}
-            size="small"
-            style={{ color: "black" }}
-          >
-            Узнать больше...
-          </Button>
+              Оформить Доставку
+            </Button>
+          </Box>
         </CardActions>
-        <IconButton color="error">
-          <FavoriteIcon />
-        </IconButton>
-
-        <Button
-          variant="outlined"
-          component={Link}
-          to={`delivery/${item.id}`}
-          size="small"
-          style={{ color: "black" }}
-        >
-          Оформить Доставку
-        </Button>
       </Card>
     </Grid>
   );

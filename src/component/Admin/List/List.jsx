@@ -13,6 +13,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Link } from "react-router-dom";
 import AddIcon from "@mui/icons-material/Add";
+import { Box } from "@mui/system";
+import { Button } from "@mui/material/Button";
 
 const List = () => {
   const { products, getProducts, deleteProduct } = useProductContext();
@@ -85,11 +87,20 @@ const List = () => {
           </Table>
           <hr />
           <Link to="/admin/add">
-            <IconButton>
+            <IconButton style={{ margin: "20px" }}>
               <AddIcon fontSize="large" />
+              <Box
+                style={{
+                  marginLeft: "20px",
+                  textDecoration: "none",
+                  fontSize: 22,
+                  color: "black",
+                }}
+              >
+                Добавить продукт
+              </Box>
             </IconButton>
           </Link>
-          <h3 style={{ marginBottom: "50px" }}>Добавить еще продукции</h3>
         </TableContainer>
       ) : (
         <Spinner />

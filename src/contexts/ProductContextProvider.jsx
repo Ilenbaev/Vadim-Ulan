@@ -61,7 +61,7 @@ const ProductContextProvider = ({ children }) => {
   const deleteProduct = async (prod) => {
     try {
       let res = await axios.delete(`${API}/${prod.id}`);
-      notify("success", `Продукт ${prod.title}был удален!`);
+      notify("success", `Продукт ${prod.title} был удален!`);
       getProducts();
     } catch (err) {
       notifyError(err);
@@ -71,7 +71,6 @@ const ProductContextProvider = ({ children }) => {
   const getOneProduct = async (id) => {
     try {
       let { data } = await axios(`${API}/${id}`);
-      console.log(data);
       dispatch({
         type: ACTIONS.GET_ONE_PRODUCT,
         payload: data,
@@ -84,7 +83,7 @@ const ProductContextProvider = ({ children }) => {
   const saveEditedProd = async (editedProd) => {
     try {
       let res = await axios.patch(`${API}/${editedProd.id}`, editedProd);
-      notify("info", `Продук ${editedProd.title} был успешно обновлен`);
+      notify("info", `Продукт ${editedProd.title} был успешно обновлен`);
       getProducts();
       navigate("/admin");
     } catch (err) {

@@ -9,7 +9,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 
 const Footer = () => {
   return (
-    <div className="footer" sx={{ flexGrow: 1 }}>
+    <div className="footer">
       <h2>© 2022 Makers</h2>
       <IconButton href="https://www.instagram.com/" style={{ color: "white" }}>
         <InstagramIcon />
