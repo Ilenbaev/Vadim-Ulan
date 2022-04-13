@@ -6,6 +6,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import "./Detail.css";
 
 const Detail = () => {
   const { prodId } = useParams();
@@ -72,6 +73,7 @@ const Detail = () => {
             </CardContent>
           </Card>
           <div
+            className="detailbtns"
             style={{
               width: "100%",
               display: "flex",
@@ -86,7 +88,7 @@ const Detail = () => {
               style={{ marginTop: 30 }}
               sx={{
                 p: 2,
-                marginBottom: 4,
+                marginBottom: 1,
                 fontSize: "1.5rem",
                 fontWeight: "900",
               }}
@@ -98,8 +100,8 @@ const Detail = () => {
               color="error"
               style={{ marginTop: 30 }}
               sx={{
-                p: 1,
-                marginBottom: 4,
+                p: 2,
+                marginBottom: 1,
                 fontSize: "1.5rem",
                 fontWeight: "900",
               }}

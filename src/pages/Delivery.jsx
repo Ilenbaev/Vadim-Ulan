@@ -92,13 +92,11 @@ export default function Delivery() {
     >
       {forEditVal ? (
         <>
-          <Container
-            sx={{ display: { lg: "flex", md: "flex" }, margin: "30px 0" }}
-          >
+          <Box style={{ display: "flex", justifyContent: "space-around" }}>
             <Card
               sx={{
-                maxWidth: 250,
-                m: 2,
+                width: 250,
+                m: 1,
                 border: "1px solid black",
               }}
             >
@@ -121,8 +119,8 @@ export default function Delivery() {
 
             <Card
               sx={{
-                maxWidth: 250,
-                m: 2,
+                width: 250,
+                m: 1,
                 border: "1px solid black",
               }}
             >
@@ -145,8 +143,8 @@ export default function Delivery() {
 
             <Card
               sx={{
-                maxWidth: 250,
-                m: 2,
+                width: 250,
+                m: 1,
                 border: "1px solid black",
               }}
             >
@@ -169,8 +167,8 @@ export default function Delivery() {
 
             <Card
               sx={{
-                maxWidth: 250,
-                m: 2,
+                width: 250,
+                m: 1,
                 border: "1px solid black",
               }}
             >
@@ -189,7 +187,7 @@ export default function Delivery() {
                 </Typography>
               </CardContent>
             </Card>
-          </Container>
+          </Box>
           <Box style={{ display: "flex", justifyContent: "space-around" }}>
             <Button
               component={Link}
