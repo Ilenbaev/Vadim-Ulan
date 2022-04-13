@@ -92,13 +92,17 @@ export default function Delivery() {
     >
       {forEditVal ? (
         <>
-          <Container
-            sx={{ display: { lg: "flex", md: "flex" }, margin: "30px 0" }}
+          <Box
+            className="delBox"
+            style={{
+              display: "flex",
+              justifyContent: "spaceBetween",
+            }}
           >
             <Card
               sx={{
-                maxWidth: 250,
-                m: 2,
+                width: 260,
+                m: 1,
                 border: "1px solid black",
               }}
             >
@@ -121,8 +125,8 @@ export default function Delivery() {
 
             <Card
               sx={{
-                maxWidth: 250,
-                m: 2,
+                width: 260,
+                m: 1,
                 border: "1px solid black",
               }}
             >
@@ -145,8 +149,8 @@ export default function Delivery() {
 
             <Card
               sx={{
-                maxWidth: 250,
-                m: 2,
+                width: 260,
+                m: 1,
                 border: "1px solid black",
               }}
             >
@@ -169,8 +173,8 @@ export default function Delivery() {
 
             <Card
               sx={{
-                maxWidth: 250,
-                m: 2,
+                width: 260,
+                m: 1,
                 border: "1px solid black",
               }}
             >
@@ -189,20 +193,24 @@ export default function Delivery() {
                 </Typography>
               </CardContent>
             </Card>
-          </Container>
-          <Box style={{ display: "flex", justifyContent: "space-around" }}>
+          </Box>
+          <Box
+            style={{ display: "flex", justifyContent: "space-around" }}
+            className="delCard"
+          >
             <Button
               component={Link}
               to="/book"
               variant="contained"
               color="success"
-              style={{ marginTop: 30 }}
-              sx={{
-                p: 2,
-                marginBottom: 4,
+              style={{
+                marginTop: 20,
+                p: 1,
+                marginBottom: "30px",
                 fontSize: "1.5rem",
                 fontWeight: "900",
               }}
+              className="delBtn"
             >
               Вернуться к выбору книг
             </Button>
@@ -211,13 +219,20 @@ export default function Delivery() {
               onClick={handleClickOpen}
               variant="contained"
               color="error"
-              style={{ marginTop: 30 }}
-              sx={{
-                p: 2,
-                marginBottom: 4,
+              style={{
+                marginTop: 20,
+                p: 1,
+                marginBottom: "30px",
                 fontSize: "1.5rem",
                 fontWeight: "900",
               }}
+              className="delBtn"
+              // style={{
+              //   p: 1,
+              //   marginBottom: 1,
+              //   fontSize: "1.5rem",
+              //   fontWeight: "900",
+              // }}
             >
               Оформить доставку
             </Button>

@@ -117,6 +117,8 @@ const Cart = () => {
               variant="contained"
               color="error"
               style={{ marginTop: 30 }}
+              component={Link}
+              to="/paymentForm"
               sx={{
                 p: 2,
                 marginBottom: 4,

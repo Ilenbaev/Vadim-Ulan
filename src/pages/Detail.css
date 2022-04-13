@@ -1,0 +1,6 @@
+@media all and (max-width: 769px) {
+  .detailCard {
+    flex-direction: column;
+    text-align: center;
+  }
+}
