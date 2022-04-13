@@ -106,7 +106,7 @@ const Cart = () => {
             </TableContainer>
 
             <Typography variant="h4">Общая цена: ${cart.totalPrice}</Typography>
-            <Button variant="contained">
+            <Button variant="contained" component={Link} to="/paymentForm">
               Купить товар за ${cart.totalPrice}
             </Button>
           </>

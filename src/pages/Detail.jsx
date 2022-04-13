@@ -37,10 +37,10 @@ const Detail = () => {
                 Автор :
                 <span style={{ fontWeight: "bold" }}> {forEditVal.author}</span>
                 <br />
-                Жанр :{" "}
+                Жанр :
                 <span style={{ fontWeight: "bold" }}> {forEditVal.type}</span>
                 <br />
-                Цена :{" "}
+                Цена :
                 <span style={{ fontWeight: "bold" }}> {forEditVal.price}</span>$
                 <br />В наличии : есть
               </p>
@@ -85,6 +85,8 @@ const Detail = () => {
             <Button
               variant="outlined"
               style={{ margin: "10px", color: "black" }}
+              component={Link}
+              to="/paymentForm"
             >
               Купить
             </Button>

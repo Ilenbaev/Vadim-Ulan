@@ -39,7 +39,6 @@ const ProductContextProvider = ({ children }) => {
   const getProducts = async () => {
     try {
       let res = await axios.get(`${API}${window.location.search}`);
-
       dispatch({
         type: ACTIONS.GET_PRODUCTS,
         payload: res,
@@ -72,6 +71,7 @@ const ProductContextProvider = ({ children }) => {
   const getOneProduct = async (id) => {
     try {
       let { data } = await axios(`${API}/${id}`);
+      console.log(data);
       dispatch({
         type: ACTIONS.GET_ONE_PRODUCT,
         payload: data,

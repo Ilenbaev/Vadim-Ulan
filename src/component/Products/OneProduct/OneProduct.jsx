@@ -11,12 +11,11 @@ import { Link } from "react-router-dom";
 import { useCart } from "../../../contexts/CartContextProvider";
 import { useAuth } from "../../../contexts/AuthContextProvider";
 import { notify } from "../../Toastify/Toastify";
-import Delivery from "../../../pages/Delivery";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 
 export default function OneProduct({ item }) {
   const { addDelToCart, isProdInCart } = useCart();
   const [inCart, setInCart] = React.useState(isProdInCart(item.id));
-
   const { currentUser } = useAuth();
 
   return (
@@ -75,6 +74,9 @@ export default function OneProduct({ item }) {
             Узнать больше...
           </Button>
         </CardActions>
+        <IconButton color="error">
+          <FavoriteIcon />
+        </IconButton>
 
         <Button
           variant="outlined"
