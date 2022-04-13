@@ -11,11 +11,13 @@
 
   .homebtn {
     padding: 25px;
+    width: 163px !important;
+    height: 141px !important;
   }
 
   .shadow {
     color: green;
-    max-width: 200px !important;
+    max-width: 180px !important;
     height: 158px !important;
   }
 }

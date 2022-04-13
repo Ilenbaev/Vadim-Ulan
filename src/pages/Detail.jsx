@@ -104,7 +104,7 @@ const Detail = () => {
                 fontWeight: "900",
               }}
             >
-              Купить
+              Купить эту книгу
             </Button>
           </div>
         </Container>

@@ -39,11 +39,13 @@ const Home = () => {
           sx={{
             color: "white",
             backgroundColor: "rgb(48, 48, 48)",
-            p: 2.4,
+            p: 2.5,
             m: 1,
             borderRadius: 2,
             fontSize: "2rem",
             fontWeight: "900",
+            width: "325px",
+            height: "123px",
           }}
         >
           КУПИТЬ КНИГУ
