@@ -120,9 +120,9 @@ const Cart = () => {
               component={Link}
               to="/paymentForm"
               sx={{
-                p: 2,
+                p: 1,
                 marginBottom: 4,
-                fontSize: "2rem",
+                fontSize: "1.5rem",
                 fontWeight: "900",
               }}
             >
