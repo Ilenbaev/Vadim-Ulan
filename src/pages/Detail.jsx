@@ -1,4 +1,4 @@
-import { Box, Container, TextField } from "@mui/material";
+import { Box, Container, IconButton, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useProductContext } from "../contexts/ProductContextProvider";
@@ -8,37 +8,61 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import "./Detail.css";
 import { useUserContext } from "../contexts/Comment";
+import { useAuth } from "../contexts/AuthContextProvider";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { notify } from "../component/Toastify/Toastify";
 
 const Detail = () => {
   const { prodId } = useParams();
   const { getOneProduct, forEditVal } = useProductContext();
-  const { addCommit } = useUserContext();
+  const { addCommit, products, getCommit, deleteCommit } = useUserContext();
 
-  const initValues = {
+  const { currentUser } = useAuth();
+
+  useEffect(() => {
+    getCommit(prodId);
+  }, []);
+
+  const [inpValues, setInpValues] = useState({
     commit: "",
-  };
-
-  const [inpValues, setInpValues] = useState(initValues);
+    user: "",
+    prodId: prodId,
+  });
 
   useEffect(() => {
     getOneProduct(prodId);
   }, []);
+
+  useEffect(() => {
+    setInpValues({
+      ...inpValues,
+      user: currentUser.user,
+    });
+  }, [currentUser]);
 
   const handleChange = (e) => {
     let obj = {
       ...inpValues,
       [e.target.name]: e.target.value,
     };
+
     setInpValues(obj);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    if (!inpValues.commit.trim()) {
+      notify("error", "Заполните все поля");
+      return;
+    }
     let obj = {
       ...inpValues,
     };
     addCommit(obj);
+    setInpValues({
+      ...inpValues,
+      commit: "",
+    });
   };
 
   return (
@@ -96,27 +120,70 @@ const Detail = () => {
               <Typography variant="h6">{forEditVal.description}</Typography>
             </CardContent>
           </Card>
-
-          <Box>
+          <h1>Комменты</h1>
+          <Box
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              margin: "30px 0",
+            }}
+          >
             <Card
               sx={{
-                maxWidth: 1200,
-                display: { lg: "flex", md: "flex", sm: "flex" },
+                maxWidth: 800,
+                border: "1px solid grey",
+                textAlign: "center",
+                display: "flex",
+                justifyContent: "center",
               }}
-              style={{ border: "1px solid grey" }}
             >
               <CardContent>
                 <form onSubmit={(e) => handleSubmit(e)}>
+                  {products.map((item) => (
+                    <Box
+                      key={item.id}
+                      style={{
+                        borderBottom: "1px solid black",
+                        display: "flex",
+                        justifyContent: "center",
+                        maxWidth: "750px",
+                        minWidth: "500px",
+                      }}
+                    >
+                      <div>
+                        <img
+                          src="https://images.vexels.com/media/users/3/157838/isolated/lists/79bda32b1cc2787ec7d2a8df05279bad-bald-head-avatar.png"
+                          width="100px"
+                          alt=""
+                        />
+                      </div>
+                      <div>
+                        <p style={{ fontWeight: "bold" }}>{item.user}</p>
+                        <p style={{ opacity: "0.6" }}>
+                          {new Date().toLocaleString()}
+                        </p>
+                        <p>{item.commit}</p>
+                        {item.user === currentUser.user ? (
+                          <IconButton onClick={() => deleteCommit(item)}>
+                            <DeleteIcon />
+                          </IconButton>
+                        ) : (
+                          ""
+                        )}
+                      </div>
+                    </Box>
+                  ))}
                   <TextField
                     name="commit"
                     id="outlined-basic"
-                    label="Описание"
+                    label="Коммент"
                     variant="outlined"
                     multiline
-                    rows={3}
+                    rows={2}
                     onChange={(e) => handleChange(e)}
-                    sx={{ my: 1 }}
+                    sx={{ my: 1, maxWidth: "350px" }}
                   />
+
                   <br />
                   <Button type="submit" variant="contained">
                     Добавить комент
