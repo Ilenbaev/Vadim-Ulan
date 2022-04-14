@@ -120,6 +120,9 @@ const Detail = () => {
               <Typography variant="h6">{forEditVal.description}</Typography>
             </CardContent>
           </Card>
+
+          {/* ------------------------------------------------------ */}
+
           <h1>Комменты</h1>
           <Box
             style={{
@@ -192,7 +195,7 @@ const Detail = () => {
               </CardContent>
             </Card>
           </Box>
-
+          {/* ----------------------------------------------------------- */}
           <div
             style={{
               width: "100%",

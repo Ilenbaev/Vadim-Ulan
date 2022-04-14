@@ -114,6 +114,7 @@ export default function OneProduct({ item }) {
               </IconButton>
             )}
           </Box>
+
           <Box>
             <Button
               variant="outlined"

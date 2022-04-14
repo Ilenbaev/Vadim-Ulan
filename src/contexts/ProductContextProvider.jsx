@@ -39,6 +39,7 @@ const ProductContextProvider = ({ children }) => {
   const getProducts = async () => {
     try {
       let res = await axios.get(`${API}${window.location.search}`);
+      // console.log(res.headers["x-total-count"]);
       dispatch({
         type: ACTIONS.GET_PRODUCTS,
         payload: res,
@@ -94,7 +95,6 @@ const ProductContextProvider = ({ children }) => {
   return (
     <productContext.Provider
       value={{
-        pageTotalcount: state.pageTotalcount,
         products: state.products,
         forEditVal: state.forEditVal,
         pageTotalCount: state.pageTotalCount,

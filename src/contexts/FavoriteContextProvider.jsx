@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useReducer } from "react";
 import { FAV } from "../helpers/consts";
-import { calcTotalPrice, calSubPrice } from "../helpers/functuons";
 
 const favoriteContext = createContext();
 
@@ -65,7 +64,6 @@ const FavoriteContextProvider = ({ children }) => {
     } else {
       favorite.products.push(newProd);
     }
-    favorite.totalPrice = calcTotalPrice(favorite.products);
 
     localStorage.setItem("favorite", JSON.stringify(favorite));
     getFavoriteLength();
@@ -104,11 +102,9 @@ const FavoriteContextProvider = ({ children }) => {
     favorite.products = favorite.products.map((elem) => {
       if (elem.item.id === id) {
         elem.count = newCount;
-        elem.subPrice = calSubPrice(elem);
       }
       return elem;
     });
-    favorite.totalPrice = calcTotalPrice(favorite.products);
     localStorage.setItem("favorite", JSON.stringify(favorite));
     getFavorite();
   };
@@ -118,7 +114,6 @@ const FavoriteContextProvider = ({ children }) => {
     favorite.products = favorite.products.filter((elem) => {
       return elem.item.id !== id;
     });
-    favorite.totalPrice = calcTotalPrice(favorite.products);
     localStorage.setItem("favorite", JSON.stringify(favorite));
     getFavorite();
     getFavoriteLength();
