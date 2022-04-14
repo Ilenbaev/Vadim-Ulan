@@ -8,6 +8,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea } from "@mui/material";
 import "./About.css";
+import { Link } from "react-router-dom";
 
 const About = () => {
   return (
@@ -70,13 +71,15 @@ const About = () => {
         <Button
           variant="contained"
           color="error"
+          component={Link}
+          to="/adress"
           style={{
             marginTop: 40,
           }}
           sx={{
-            p: 2,
+            p: 1,
             borderRadius: 2,
-            fontSize: "1.5rem",
+            fontSize: "1.2rem",
             fontWeight: "700",
             alignSelf: "center",
           }}

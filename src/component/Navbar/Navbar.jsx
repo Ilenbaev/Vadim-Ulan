@@ -142,7 +142,6 @@ export default function Navbar() {
           <span style={{ color: "black" }}>Главная</span>
         </NavLink>
       </MenuItem>
-
       <MenuItem>
         <NavLink to="/adress" style={{ textDecoration: "none" }}>
           <IconButton
@@ -155,7 +154,6 @@ export default function Navbar() {
           <span style={{ color: "black" }}>Mагазины</span>
         </NavLink>
       </MenuItem>
-
       <MenuItem>
         <NavLink to="/book" style={{ textDecoration: "none" }}>
           <IconButton
@@ -168,7 +166,6 @@ export default function Navbar() {
           <span style={{ color: "black" }}>Книги</span>
         </NavLink>
       </MenuItem>
-
       <MenuItem>
         <NavLink to="/about" style={{ textDecoration: "none" }}>
           <IconButton
@@ -181,7 +178,6 @@ export default function Navbar() {
           <span style={{ color: "black" }}>О нас</span>
         </NavLink>
       </MenuItem>
-
       {currentUser?.isAdmin && (
         <MenuItem>
           <NavLink to="/admin" style={{ textDecoration: "none" }}>
@@ -193,6 +189,25 @@ export default function Navbar() {
               <SettingsIcon />
             </IconButton>
             <span style={{ color: "black" }}>Admin</span>
+          </NavLink>
+        </MenuItem>
+      )}
+      {currentUser?.user && (
+        <MenuItem>
+          <NavLink
+            to="/cart"
+            style={{ color: "white", textDecoration: "none" }}
+          >
+            <IconButton
+              style={{ color: "black" }}
+              size="large"
+              aria-label="show 4 new mails"
+            >
+              <Badge badgeContent={+cartLength} color="error">
+                <ShoppingBasketIcon />
+              </Badge>
+            </IconButton>
+            <span style={{ color: "black" }}>Корзина</span>
           </NavLink>
         </MenuItem>
       )}
@@ -209,7 +224,7 @@ export default function Navbar() {
         >
           {currentUser?.isLogged ? <FaceIcon /> : <AccountCircle />}
         </IconButton>
-        <p>{currentUser.user}</p>
+        {currentUser.user === null ? <p>Profile</p> : <p>{currentUser.user}</p>}
       </MenuItem>
       <hr />
       <LiveSearch />

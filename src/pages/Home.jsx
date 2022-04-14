@@ -3,6 +3,7 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Button, Container } from "@mui/material";
 import "./Home.css";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -36,6 +37,8 @@ const Home = () => {
           className="homebtn"
           variant="contained"
           size="large"
+          component={Link}
+          to="/book"
           sx={{
             color: "white",
             backgroundColor: "rgb(48, 48, 48)",
@@ -44,7 +47,7 @@ const Home = () => {
             borderRadius: 2,
             fontSize: "2rem",
             fontWeight: "900",
-            width: "325px",
+            width: "329px",
             height: "123px",
           }}
         >

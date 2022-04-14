@@ -17,7 +17,6 @@ import { Box } from "@mui/system";
 export default function OneProduct({ item }) {
   const { addDelToCart, isProdInCart } = useCart();
   const [inCart, setInCart] = React.useState(isProdInCart(item.id));
-
   const { currentUser } = useAuth();
 
   return (

@@ -1,0 +1,21 @@
+.bankCard {
+  background: url(./images/20200116044637_Abstrakciya_geometriya_5-175.jpeg);
+  height: 50px;
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
+  text-align: center;
+  font-size: 2em;
+  font-weight: bolder;
+  padding: 40px;
+}
+
+.bankCard p {
+  text-align: center;
+  color: black;
+}
+
+#PaymentForm {
+  margin: 20px;
+}

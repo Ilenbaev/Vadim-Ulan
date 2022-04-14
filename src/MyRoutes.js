@@ -15,6 +15,7 @@ import Register from "./pages/Register";
 import RequireAuth from "./component/Auth/RequireAuth";
 import Detail from "./pages/Detail";
 import Delivery from "./pages/Delivery";
+import PaymentForm from "./pages/Bank";
 
 const MyRoutes = () => {
   return (
@@ -27,6 +28,7 @@ const MyRoutes = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/paymentForm" element={<PaymentForm />} />
         <Route path="/book/detail/:prodId" element={<Detail />} />
         <Route path="/book/delivery/:prodId" element={<Delivery />} />
 

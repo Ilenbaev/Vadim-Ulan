@@ -11,7 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
+/* html {
+  position: relative;
+} */
 @media screen and (max-width: 425px) {
   html {
     font-size: 11px;

@@ -13,6 +13,7 @@
     padding: 25px;
     width: 163px !important;
     height: 141px !important;
+    text-align: center;
   }
 
   .shadow {
@@ -29,7 +30,7 @@
 .shadow {
   position: relative;
   z-index: 1;
-  max-width: 342px;
+  max-width: 346px;
   width: 100%;
   height: 140px;
   border-radius: 20px;

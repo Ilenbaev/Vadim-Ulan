@@ -40,7 +40,7 @@ const Form = ({ saveValues, compForEdit, forEditVal, getOneProduct }) => {
     };
     setInpValues(obj);
   };
-  console.log(inpValues);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
