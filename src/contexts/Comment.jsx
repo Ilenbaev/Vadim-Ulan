@@ -10,7 +10,6 @@ export const useUserContext = () => {
 
 const INIT_STATE = {
   commit: [],
-  forEditCom: null,
 };
 function reducer(state = INIT_STATE, action) {
   switch (action.type) {
@@ -19,10 +18,6 @@ function reducer(state = INIT_STATE, action) {
         ...state,
         products: action.payload.data,
       };
-    case ACTIONS.GET_ONE_PRODUCT:
-      return { ...state, forEditCom: action.payload };
-    default:
-      return state;
   }
 }
 
@@ -65,7 +60,6 @@ const Comment = ({ children }) => {
         addCommit,
         getCommit,
         deleteCommit,
-
         products: state.products,
       }}
     >

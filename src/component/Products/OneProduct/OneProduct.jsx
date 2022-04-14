@@ -49,28 +49,6 @@ export default function OneProduct({ item }) {
           <Box>
             {currentUser.user === null ? (
               <IconButton
-                title="Добавить в избранное"
-                color="inherit"
-                onClick={() => {
-                  notify("error", "Пожалуйста зарегистрируйтесь");
-                }}
-              >
-                <BookmarkIcon />
-              </IconButton>
-            ) : (
-              <IconButton
-                title="Добавить в избранное"
-                color={inFavorite ? "secondary" : "inherit"}
-                onClick={() => {
-                  addDelToFavorite(item);
-                  setInFavorite(isProdInFavorite(item.id));
-                }}
-              >
-                <BookmarkIcon />
-              </IconButton>
-            )}
-            {currentUser.user === null ? (
-              <IconButton
                 title="Добавить в корзину"
                 color="inherit"
                 onClick={() => {
@@ -112,6 +90,28 @@ export default function OneProduct({ item }) {
               >
                 Узнать больше..
               </Button>
+            )}
+            {currentUser.user === null ? (
+              <IconButton
+                title="Добавить в избранное"
+                color="inherit"
+                onClick={() => {
+                  notify("error", "Пожалуйста зарегистрируйтесь");
+                }}
+              >
+                <BookmarkIcon />
+              </IconButton>
+            ) : (
+              <IconButton
+                title="Добавить в избранное"
+                color={inFavorite ? "secondary" : "inherit"}
+                onClick={() => {
+                  addDelToFavorite(item);
+                  setInFavorite(isProdInFavorite(item.id));
+                }}
+              >
+                <BookmarkIcon />
+              </IconButton>
             )}
           </Box>
           <Box>

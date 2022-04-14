@@ -9,20 +9,6 @@ const handle = () => {
   notify("success", "Благодарим за покупку");
 };
 
-const handleClick = () => {
-  if (
-    this.state.cvc.trim() !== "" &&
-    this.state.name.trim() !== "" &&
-    this.state.number.trim() !== "" &&
-    this.state.expiry.trim() !== ""
-  ) {
-    alert("error");
-    return;
-  } else {
-    alert("error");
-  }
-};
-
 export default class PaymentForm extends React.Component {
   state = {
     cvc: "",
@@ -53,7 +39,7 @@ export default class PaymentForm extends React.Component {
           name={this.state.name}
           number={this.state.number}
         />
-        <form style={{ textAlign: "center" }} onSubmit={handleClick}>
+        <form style={{ textAlign: "center" }}>
           <input
             style={{ margin: "5px 0" }}
             type="number"
