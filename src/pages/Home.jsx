@@ -1,7 +1,6 @@
 import React from "react";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Button, Container } from "@mui/material";
+import { Button } from "@mui/material";
 import "./Home.css";
 import { Link } from "react-router-dom";
 

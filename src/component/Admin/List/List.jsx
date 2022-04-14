@@ -24,9 +24,7 @@ const List = () => {
   }, []);
 
   const handleDelete = (prod) => {
-    // let answer = confirm("Действительно ли вы хотите удалить данный продукт?");
     let answer = true;
-
     if (answer) deleteProduct(prod);
   };
 

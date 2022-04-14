@@ -16,6 +16,7 @@ import RequireAuth from "./component/Auth/RequireAuth";
 import Detail from "./pages/Detail";
 import Delivery from "./pages/Delivery";
 import PaymentForm from "./pages/Bank";
+import Favorite from "./pages/Favorite";
 
 const MyRoutes = () => {
   return (
@@ -31,6 +32,7 @@ const MyRoutes = () => {
         <Route path="/paymentForm" element={<PaymentForm />} />
         <Route path="/book/detail/:prodId" element={<Detail />} />
         <Route path="/book/delivery/:prodId" element={<Delivery />} />
+        <Route path="/favorite" element={<Favorite />} />
 
         <Route
           path="/admin"

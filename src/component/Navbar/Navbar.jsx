@@ -25,6 +25,8 @@ import LiveSearch from "../LiveSearch/LiveSearch";
 import { useCart } from "../../contexts/CartContextProvider";
 import { useAuth } from "../../contexts/AuthContextProvider";
 import FaceIcon from "@mui/icons-material/Face";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import { useFavorite } from "../../contexts/FavoriteContextProvider";
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -34,8 +36,14 @@ export default function Navbar() {
 
   const { getCartLength, cartLength } = useCart();
 
+  const { getFavoriteLength, favoriteLength } = useFavorite();
+
   React.useEffect(() => {
     getCartLength();
+  }, []);
+
+  React.useEffect(() => {
+    getFavoriteLength();
   }, []);
 
   const isMenuOpen = Boolean(anchorEl);
@@ -346,6 +354,22 @@ export default function Navbar() {
                 >
                   <Badge badgeContent={+cartLength} color="error">
                     <ShoppingBasketIcon />
+                  </Badge>
+                </IconButton>
+              </Link>
+            )}
+
+            {currentUser?.user && (
+              <Link to="/favorite" style={{ color: "white" }}>
+                <IconButton
+                  size="large"
+                  edge="end"
+                  aria-label="account of current user"
+                  aria-haspopup="true"
+                  color="inherit"
+                >
+                  <Badge badgeContent={+favoriteLength} color="error">
+                    <BookmarkIcon />
                   </Badge>
                 </IconButton>
               </Link>
