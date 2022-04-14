@@ -10,7 +10,7 @@ export const useUserContext = () => {
 
 const INIT_STATE = {
   commit: [],
-  forEditVal: null,
+  forEditCom: null,
 };
 function reducer(state = INIT_STATE, action) {
   switch (action.type) {
@@ -18,12 +18,9 @@ function reducer(state = INIT_STATE, action) {
       return {
         ...state,
         products: action.payload.data,
-        pageTotalCount: Math.ceil(
-          action.payload.headers["x-total-count"] / PRODUCTS_LIMIT
-        ),
       };
     case ACTIONS.GET_ONE_PRODUCT:
-      return { ...state, forEditVal: action.payload };
+      return { ...state, forEditCom: action.payload };
     default:
       return state;
   }
@@ -32,15 +29,46 @@ function reducer(state = INIT_STATE, action) {
 const Comment = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
-  const addCommit = async (newProduct) => {
+  const getCommit = async (id) => {
     try {
-      let res = await axios.post(APILIKE, newProduct);
+      let res = await axios.get(`${APILIKE}?prodId=${id}`);
+      dispatch({
+        type: ACTIONS.GET_PRODUCTS,
+        payload: res,
+      });
     } catch (err) {
       console.log(err);
     }
   };
+
+  const addCommit = async (newProduct) => {
+    try {
+      let res = await axios.post(APILIKE, newProduct);
+      getCommit(newProduct.prodId);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const deleteCommit = async (item) => {
+    try {
+      let res = await axios.delete(`${APILIKE}/${item.id}`);
+      getCommit(item.prodId);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
-    <userContext.Provider value={{ addCommit }}>
+    <userContext.Provider
+      value={{
+        addCommit,
+        getCommit,
+        deleteCommit,
+
+        products: state.products,
+      }}
+    >
       {children}
     </userContext.Provider>
   );

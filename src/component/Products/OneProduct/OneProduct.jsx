@@ -13,10 +13,14 @@ import { useAuth } from "../../../contexts/AuthContextProvider";
 import { notify } from "../../Toastify/Toastify";
 import Delivery from "../../../pages/Delivery";
 import { Box } from "@mui/system";
+import BookmarkIcon from "@mui/icons-material/Bookmark";
+import { useFavorite } from "../../../contexts/FavoriteContextProvider";
 
 export default function OneProduct({ item }) {
   const { addDelToCart, isProdInCart } = useCart();
+  const { addDelToFavorite, isProdInFavorite } = useFavorite();
   const [inCart, setInCart] = React.useState(isProdInCart(item.id));
+  const [inFavorite, setInFavorite] = React.useState(isProdInFavorite(item.id));
   const { currentUser } = useAuth();
 
   return (
@@ -45,6 +49,28 @@ export default function OneProduct({ item }) {
           <Box>
             {currentUser.user === null ? (
               <IconButton
+                title="Добавить в избранное"
+                color="inherit"
+                onClick={() => {
+                  notify("error", "Пожалуйста зарегистрируйтесь");
+                }}
+              >
+                <BookmarkIcon />
+              </IconButton>
+            ) : (
+              <IconButton
+                title="Добавить в избранное"
+                color={inFavorite ? "secondary" : "inherit"}
+                onClick={() => {
+                  addDelToFavorite(item);
+                  setInFavorite(isProdInFavorite(item.id));
+                }}
+              >
+                <BookmarkIcon />
+              </IconButton>
+            )}
+            {currentUser.user === null ? (
+              <IconButton
                 title="Добавить в корзину"
                 color="inherit"
                 onClick={() => {
@@ -65,15 +91,28 @@ export default function OneProduct({ item }) {
                 <ShoppingCartIcon />
               </IconButton>
             )}
-            <Button
-              variant="outlined"
-              component={Link}
-              to={`detail/${item.id}`}
-              size="small"
-              style={{ color: "black" }}
-            >
-              Узнать больше..
-            </Button>
+            {currentUser.user === null ? (
+              <Button
+                variant="outlined"
+                size="small"
+                style={{ color: "black" }}
+                onClick={() => {
+                  notify("error", "Пожалуйста зарегистрируйтесь");
+                }}
+              >
+                Узнать больше..
+              </Button>
+            ) : (
+              <Button
+                variant="outlined"
+                component={Link}
+                to={`detail/${item.id}`}
+                size="small"
+                style={{ color: "black" }}
+              >
+                Узнать больше..
+              </Button>
+            )}
           </Box>
           <Box>
             <Button
